@@ -230,9 +230,6 @@ $(document).ready(function () {
 
             $(item).mouseover(function (item) {
                 first = list.filter(".current")[0];
-
-                console.log(aPageItems);
-                console.log(self)
                 var i = $(aPageItems).index(this);
                 console.log(i);
                 next = list[i];
