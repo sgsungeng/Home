@@ -231,10 +231,11 @@ body{
     /*background-color: red;*/
     width:100%;
     height: 418px;
-
+    display: block;
 }
 #ad_list{
     height: 418px;
+
     width: 100%;
 }
 #ad_list li,#ad_list a{
@@ -316,7 +317,7 @@ body{
     display: inline-block;
     text-align: center;
     width: 59px;
-    height: 55px;
+    height: 54px;
     line-height: 56px;
     font-size: 12px;
     /*border: solid 1px red;*/
@@ -332,21 +333,24 @@ body{
     /*border: solid 1px black;*/
 }
 
-.middle #image1{
+.middle .image1{
     width: 60%;
     height: 120px;
     background-color: white;
     /*margin-top: 10px;*/
     /*border: 1px solid red;*/
-    display: inline-block;
+    /*display: inline-block;*/
     float: left;
 }
+
+
+
 .middle #top{
     margin-top: 10px;
     height: 120px;
 }
 
-.middle #image1 .image {
+.middle .image1 .image {
     /*display: inline-block;*/
     height:90px;
     width: 186px;
@@ -356,10 +360,10 @@ body{
     margin-left: 10px;
     /*white-space: nowrap;*/
 }
-.middle #image1 img {
+.middle .image1 img {
     height:90px;
 }
-.middle #image1 .text{
+.middle .image1 .text{
     float: left;
     margin-top: 10px;
     /*display: inline-block;*/
@@ -370,13 +374,13 @@ body{
     position: relative;
 }
 
-.middle #image1 .text .title{
+.middle .image1 .text .title{
     float: top;
     /*display: inline-block;*/
     width: 100%;
 }
 
-.middle #image1 .text .bottom{
+.middle .image1 .text .bottom{
     /*float: bottom;*/
     /*display: inline-block;*/
     width: 100%;
@@ -385,12 +389,12 @@ body{
 }
 
 
-.middle #image1 .text .time{
+.middle .image1 .text .time{
     float: left;
     color: #8a8a8a;
 }
 
-.middle #image1 .text .getMore{
+.middle .image1 .text .getMore{
     float: right;
     color: #85CD95;
     /*border: solid 1px red;*/
@@ -838,7 +842,4 @@ body{
 .pageControlContent{
     z-index: 2;
 }
-
-
-
 

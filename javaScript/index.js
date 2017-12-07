@@ -142,8 +142,22 @@ $(document).ready(function () {
         next.style.display = "list-item";
         next.classList.add("current");
     });
-
+    var lastSelected = $(".firstFilter a")[0];
     $(".firstFilter a").click(function () {
+        var pre = $(".firstFilter_selected");
+        if (pre !== this){
+            lastSelected = this;
+            pre.removeClass("firstFilter_selected");
+            this.classList.add("firstFilter_selected");
+            $(".ccc").removeClass("ccc");
+            var index = $(".firstFilterButton").index($(".firstFilter_selected")[0]);
+            var list = $(".secondFilter");
+            list[index].classList.add("ccc")
+        }
+    });
+
+    $(".firstFilter a").mouseover(function () {
+
         var pre = $(".firstFilter_selected");
         if (pre !== this){
             pre.removeClass("firstFilter_selected");
@@ -153,6 +167,25 @@ $(document).ready(function () {
             var list = $(".secondFilter");
             list[index].classList.add("ccc")
         }
+    });
+    var iscurrent = false
+    $(".filter").mouseover(function () {
+        iscurrent = true;
+    });
+    $(".filter").mouseleave(function () {
+        if(iscurrent){
+            var pre = $(".firstFilter_selected");
+            if (pre !== lastSelected){
+                pre.removeClass("firstFilter_selected");
+                lastSelected.classList.add("firstFilter_selected");
+                $(".ccc").removeClass("ccc");
+                var index = $(".firstFilterButton").index($(".firstFilter_selected")[0]);
+                var list = $(".secondFilter");
+                list[index].classList.add("ccc")
+            }
+            iscurrent = false;
+        }
+
     });
     var divSecond = $(".secondFilter");
     for(i = 0; i< divSecond.length; i++){
@@ -258,6 +291,9 @@ $(document).ready(function () {
             });
         }
     }
+    $("#ad_content").css({
+        display: "block"
+    })
 });
 
 
