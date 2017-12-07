@@ -333,22 +333,40 @@ body{
     /*border: solid 1px black;*/
 }
 
-.middle .image1{
-    width: 60%;
-    height: 120px;
-    background-color: white;
-    /*margin-top: 10px;*/
-    /*border: 1px solid red;*/
-    /*display: inline-block;*/
-    float: left;
-}
-
-
-
 .middle #top{
     margin-top: 10px;
     height: 120px;
+    overflow: hidden;
 }
+
+figure{
+    perspective: 0;
+    -webkit-perspective: 0;
+    overflow: hidden;
+    display: inline;
+}
+
+.middle .newAd{
+    width: 60%;
+    height: 120px;
+    float: left;
+    display: inline-block;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    transition: 1s;
+    -webkit-transition: 1s;
+    /*display: inline-block;*/
+    /*overflow: hidden;*/
+}
+
+.middle .image1{
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    /*display: inline-block;*/
+    position: absolute;
+}
+
 
 .middle .image1 .image {
     /*display: inline-block;*/
@@ -360,9 +378,12 @@ body{
     margin-left: 10px;
     /*white-space: nowrap;*/
 }
+
 .middle .image1 img {
     height:90px;
 }
+
+
 .middle .image1 .text{
     float: left;
     margin-top: 10px;
@@ -404,7 +425,7 @@ body{
 
 .middle #image2{
     float: left;
-    width: calc(40% - 15px);
+    width: calc(40% - 15px - 10px);
     height: 120px;
     display: inline-block;
     margin-left: 15px;

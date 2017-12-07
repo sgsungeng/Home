@@ -28,7 +28,7 @@ $(document).ready(function () {
     //     $(this).css("color","white");
     // });
 
-    $(window).scroll(function() {
+    $(window).scroll(function () {
         var top = $(document).scrollTop();
         // language=JQuery-CSS
         var left = $(".leftDiv");
@@ -37,9 +37,9 @@ $(document).ready(function () {
 
         var curId = "";
         var topOffset = topItem.offset().top;
-        if (topOffset -100 <= top) {
+        if (topOffset - 100 <= top) {
             curId = "#top";
-        }else {
+        } else {
             // curId = ""
         }
         items.each(function () {
@@ -77,38 +77,38 @@ $(document).ready(function () {
                     }
                 });
             }
-        }else{
+        } else {
             curlink.removeClass("cur");
         }
     });
 
-    $.fn.smartFloat = function() {
-            var position = function(element) {
-                var top = element.position().top;// pos = element.css("position");
-                $(window).scroll(function() {
-                    var scrolls = $(this).scrollTop();
-                    if (scrolls > top) {
-                        if (window.XMLHttpRequest) {
-                            element.css({
-                                position: "fixed",
-                                top: 0
-                            });
-                        } else {
-                            element.css({
-                                top: scrolls
-                            });
-                        }
-                    }else {
+    $.fn.smartFloat = function () {
+        var position = function (element) {
+            var top = element.position().top;// pos = element.css("position");
+            $(window).scroll(function () {
+                var scrolls = $(this).scrollTop();
+                if (scrolls > top) {
+                    if (window.XMLHttpRequest) {
                         element.css({
-                            position: "absolute",
-                            top: top
+                            position: "fixed",
+                            top: 0
+                        });
+                    } else {
+                        element.css({
+                            top: scrolls
                         });
                     }
-                });
-            };
-            return $(this).each(function() {
-                position($(this));
+                } else {
+                    element.css({
+                        position: "absolute",
+                        top: top
+                    });
+                }
             });
+        };
+        return $(this).each(function () {
+            position($(this));
+        });
     };
 
     $(".leftDiv").smartFloat();
@@ -129,9 +129,9 @@ $(document).ready(function () {
         index = list.indexOf(first);
         items[index].removeClass("selectedPage");
         items[index].addClass("nomalPage");
-        if(index >= list.length - 1){
+        if (index >= list.length - 1) {
             index = 0;
-        }else{
+        } else {
             index = index + 1;
         }
         items[index].classList.remove("nomalPage");
@@ -145,7 +145,7 @@ $(document).ready(function () {
     var lastSelected = $(".firstFilter a")[0];
     $(".firstFilter a").click(function () {
         var pre = $(".firstFilter_selected");
-        if (pre !== this){
+        if (pre !== this) {
             lastSelected = this;
             pre.removeClass("firstFilter_selected");
             this.classList.add("firstFilter_selected");
@@ -159,7 +159,7 @@ $(document).ready(function () {
     $(".firstFilter a").mouseover(function () {
 
         var pre = $(".firstFilter_selected");
-        if (pre !== this){
+        if (pre !== this) {
             pre.removeClass("firstFilter_selected");
             this.classList.add("firstFilter_selected");
             $(".ccc").removeClass("ccc");
@@ -173,9 +173,9 @@ $(document).ready(function () {
         iscurrent = true;
     });
     $(".filter").mouseleave(function () {
-        if(iscurrent){
+        if (iscurrent) {
             var pre = $(".firstFilter_selected");
-            if (pre !== lastSelected){
+            if (pre !== lastSelected) {
                 pre.removeClass("firstFilter_selected");
                 lastSelected.classList.add("firstFilter_selected");
                 $(".ccc").removeClass("ccc");
@@ -188,11 +188,11 @@ $(document).ready(function () {
 
     });
     var divSecond = $(".secondFilter");
-    for(i = 0; i< divSecond.length; i++){
+    for (i = 0; i < divSecond.length; i++) {
         var li = $(divSecond[i]).find("a");
-        for(j = 0; j<li.length; j++){
-            if ( li.length - 2 === j || li.length -1 === j){
-                $(li[j]).css("border-bottom","0");
+        for (j = 0; j < li.length; j++) {
+            if (li.length - 2 === j || li.length - 1 === j) {
+                $(li[j]).css("border-bottom", "0");
             }
         }
     }
@@ -202,27 +202,28 @@ $(document).ready(function () {
         var first;
         var index;
         var next;
+
         function changeADImage() {
             first = list.filter(".current")[0];
             index = list.index(first);
 
-            if(index >= list.length - 1){
+            if (index >= list.length - 1) {
                 index = 0;
-            }else{
+            } else {
                 index = index + 1;
             }
             next = list[index];
             $(first).animate({
                 opacity: '0.5'
-            },10,function () {
+            }, 10, function () {
                 next.style.opacity = "0.5";
                 first.style.display = "none";
                 first.classList.remove("current");
                 next.style.display = "list-item";
                 next.classList.add("current");
-                    $(next).animate({
+                $(next).animate({
                     opacity: "1.0"
-                },10)
+                }, 10)
             });
             var pageControl = $(".pageControlContent div");
             pageControl[list.index(next)].classList.remove("nomalPage");
@@ -230,48 +231,48 @@ $(document).ready(function () {
             pageControl[list.index(first)].classList.remove("selectedPage");
             pageControl[list.index(first)].classList.add("nomalPage");
         }
-        var tt = setInterval(changeADImage,5000);
+
+        var tt = setInterval(changeADImage, 5000);
         $(".banner").mouseover(function () {
             window.clearInterval(tt);
         });
         $(".banner").mouseout(function () {
-            tt = setInterval(changeADImage,5000);
+            tt = setInterval(changeADImage, 5000);
         });
         var aPageItems = new Array();
         var ads = $("#ad_list").find("li");
         var pageControl = $(".pageControlContent")[0];
         var aa = (80 * ads.length + 30 * (ads.length - 1)) / 2;
         $(pageControl).css("width", (aa * 2) + "px");
-        $(pageControl).css("marginLeft",-aa + "px");
-        for(var i = 0; i< ads.length; i++){
+        $(pageControl).css("marginLeft", -aa + "px");
+        for (var i = 0; i < ads.length; i++) {
             var item = document.createElement("div");
             item.style.display = "inline-block";
             item.style.position = "absolute";
-            $(item).css("left",(i * (110)) + "px");
+            $(item).css("left", (i * (110)) + "px");
             $(item).addClass("nomalPage");
-            $(item).css({"width":"80px","height":"5px"});
+            $(item).css({"width": "80px", "height": "5px"});
 
-            if(i != ads.length - 1){
-                $(item).css("marginRight","30px");
-            }else{
+            if (i != ads.length - 1) {
+                $(item).css("marginRight", "30px");
+            } else {
 
                 $(item).removeClass("nomalPage");
                 $(item).addClass("selectedPage");
             }
             $(pageControl).append(item);
-           aPageItems[i] = item;
+            aPageItems[i] = item;
 
             $(item).mouseover(function (item) {
                 first = list.filter(".current")[0];
                 var i = $(aPageItems).index(this);
-                console.log(i);
                 next = list[i];
-                if(first === next){
+                if (first === next) {
                     return
                 }
                 $(first).animate({
                     opacity: '0.5'
-                },10,function () {
+                }, 10, function () {
                     next.style.opacity = "0.5";
                     first.style.display = "none";
                     first.classList.remove("current");
@@ -279,7 +280,7 @@ $(document).ready(function () {
                     next.classList.add("current");
                     $(next).animate({
                         opacity: "1.0"
-                    },10)
+                    }, 10)
                 });
                 $(".selectedPage").each(function () {
                     var hhhh = $(aPageItems).index(this);
@@ -291,9 +292,60 @@ $(document).ready(function () {
             });
         }
     }
+
+    // 此处是为了适配 欧朋mac 浏览器
     $("#ad_content").css({
         display: "block"
-    })
+
+    });
+    var getRandomColor = function () {
+        return '#' +
+            (function (color) {
+                return (color += '0123456789abcdef'[Math.floor(Math.random() * 16)])
+                && (color.length == 6) ? color : arguments.callee(color);
+            })('');
+    }
+    { // 最新消息的轮播
+        var aNewADList = $(".image1");
+        var degree = 360 / (aNewADList.length);
+        var length = 60 / Math.tan((degree / 2 / 180) * Math.PI);
+        for (i = 0; i < aNewADList.length; i++) {
+            // aNewADList[i].style.backgroundColor = getRandomColor();
+            var aaa = "rotateX(" + degree * i + "deg)  translate3d(0, 0, " + length + "px)";
+            aNewADList[i].style.transform = aaa;
+
+            $(aNewADList[i]).css({
+                display: "inline-block",
+                transform: aaa
+            });
+        }
+        var timer;
+        var rotate = -0;
+        var sroute;
+
+        function transformNewAD() {
+            rotate = (rotate - degree);
+            sroute = "rotateX(" + rotate + "deg)";
+            $(".newAd").css({
+                transform: sroute
+            });
+        }
+
+        timer = setInterval(transformNewAD, 5000);
+        $("#top").mouseover(function () {
+            window.clearInterval(timer);
+        });
+        $("#top").mouseout(function () {
+            timer = setInterval(transformNewAD, 5000);
+        });
+    }
+
+    {
+        window.onbeforeunload = function(){
+            console.log("刷新")
+            window.scrollTo(0,0);
+        };
+    }
 });
 
 
