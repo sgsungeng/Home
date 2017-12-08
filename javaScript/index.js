@@ -294,17 +294,17 @@ $(document).ready(function () {
     }
 
     // 此处是为了适配 欧朋mac 浏览器
-    $("#ad_content").css({
-        display: "block"
-
-    });
+    // $("#ad_content").css({
+    //     display: "block"
+    //
+    // });
     var getRandomColor = function () {
         return '#' +
             (function (color) {
                 return (color += '0123456789abcdef'[Math.floor(Math.random() * 16)])
                 && (color.length == 6) ? color : arguments.callee(color);
             })('');
-    }
+    };
     { // 最新消息的轮播
         var aNewADList = $(".image1");
         var degree = 360 / (aNewADList.length);
@@ -331,18 +331,66 @@ $(document).ready(function () {
             });
         }
 
-        timer = setInterval(transformNewAD, 5000);
+
+        // $(window).blur(function () {
+        //    console.log( $.backfaceVisibility)
+        //     // if(document.visibilityState == hidden)
+        //     window.clearInterval(timer)
+        // })
+        // $(window).focus(function () {
+        //     console.log( $.backfaceVisibility)
+        //     timer = setInterval(transformNewAD,5000)
+        // })
+        (function() {
+            var lastTime = 0;
+            var vendors = ['webkit', 'moz'];
+            for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+                window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
+                window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] ||    // name has changed in Webkit
+                    window[vendors[x] + 'CancelRequestAnimationFrame'];
+            }
+
+            if (!window.requestAnimationFrame) {
+                window.requestAnimationFrame = function(callback, element) {
+                    var currTime = new Date().getTime();
+                    var timeToCall = Math.max(0, 16.7 - (currTime - lastTime));
+                    console.log(timeToCall)
+                    var id = window.setTimeout(function() {
+                        callback(currTime + timeToCall);
+                    }, timeToCall);
+                    lastTime = currTime + timeToCall;
+                    return id;
+                };
+            }
+            if (!window.cancelAnimationFrame) {
+                window.cancelAnimationFrame = function(id) {
+                    clearTimeout(id);
+                };
+            }
+        }());
+        var ti = 0;
+        function animation() {
+
+            ti++;
+            if (ti > 300){
+                ti = 0;
+                transformNewAD()
+                console.log("动画")
+            }
+            timer = requestAnimationFrame(animation);
+        }
+        animation();
         $("#top").mouseover(function () {
-            window.clearInterval(timer);
+            cancelAnimationFrame(timer)
         });
         $("#top").mouseout(function () {
-            timer = setInterval(transformNewAD, 5000);
+            timer = requestAnimationFrame(animation)
         });
     }
 
     {
         window.onbeforeunload = function(){
-            console.log("刷新")
+            console.log("刷新");
             window.scrollTo(0,0);
         };
     }

@@ -340,26 +340,28 @@ body{
 }
 
 figure{
-    perspective: 0;
-    -webkit-perspective: 0;
-    overflow: hidden;
-    display: inline;
+    perspective: 10000px;
+    -webkit-perspective: 10000px;
+    background-color: white;
 }
 
 .middle .newAd{
     width: 60%;
     height: 120px;
     float: left;
-    display: inline-block;
+    /*display: inline-block;*/
     transform-style: preserve-3d;
     -webkit-transform-style: preserve-3d;
     transition: 1s;
     -webkit-transition: 1s;
+
+    background-color: white;
     /*display: inline-block;*/
     /*overflow: hidden;*/
 }
 
 .middle .image1{
+
     height: 100%;
     width: 100%;
     background-color: white;
@@ -376,6 +378,7 @@ figure{
     float: left;
     margin-top: 10px;
     margin-left: 10px;
+    background-color: white;
     /*white-space: nowrap;*/
 }
 
